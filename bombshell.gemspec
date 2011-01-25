@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bombshell.gemspec",
     "lib/bombshell.rb",
     "spec/bombshell_spec.rb",
     "spec/spec_helper.rb"
