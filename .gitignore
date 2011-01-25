@@ -10,6 +10,7 @@ doc
 
 # bundler
 .bundle
+Gemfile.lock
 
 # jeweler generated
 pkg
@@ -34,7 +35,7 @@ pkg
 #tmtags
 #
 # For emacs:
-#*~
+*~
 #\#*
 #.\#*
 #
