@@ -139,11 +139,11 @@ It's there. Give it a whirl with TAB.
 
 ## To use:
 
-* Create a class for your shell and `include Bombshell::Shell`. You should also set this class to inherit from `Bombshell::Environment` as that will ensure your shell doesn't have any extraneous "commands" (i.e. methods) inherited from Object. (If you'd rather use a different basis---like `CleanSlate`---or `undef` methods yourself, go right ahead.)
+* Create a class for your shell and `include Bombshell::Shell`. You should also set this class to inherit from `Bombshell::Environment` as that will ensure your shell doesn't have any extraneous "commands" (i.e. methods) inherited from Object. (If you'd rather use a different basis--like `CleanSlate`--or `undef` methods yourself, go right ahead.)
 
 * Define your commands as instance methods on this class. There's nothing *too* funny going on here, it's just Ruby.
 
-* Kick off the shell with Bombshell.launch(YourShellClass). It's possible to do this from IRB but it's kind of messy (constant reassignment warnings). Instead, set up a "binary" for yourself like `pizza/bin/pizza` at the top of this file.
+* Kick off the shell with `Bombshell.launch(YourShellClass)`. It's possible to do this from IRB but it's kind of messy (constant reassignment warnings). Instead, set up a "binary" for yourself like `pizza/bin/pizza` at the top of this file.
 
 ## Hints:
 
