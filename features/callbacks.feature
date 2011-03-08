@@ -1,16 +1,20 @@
-Feature: Custom shell
+Feature: Callbacks
 
-  In order to allow my users to explore my library
+  In order to have customization flexibility
   As a Ruby library developer
-  I want to give them an interactive shell
+  I want to have access to callbacks
   
-  Scenario: Running the shell
+  Scenario: Using a before_launch callback
     Given a file named "fooshell.rb" with:
       """
       require 'bombshell'
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
+          before_launch do
+            puts "Hi, I'm #{name}"
+          end
+          def self.name; 'Foo' end
         end
       end
       Bombshell.launch Foo::Shell
@@ -19,27 +23,26 @@ Feature: Custom shell
     And I type "quit"
     Then the output should contain:
       """
-      [Bombshell]
+      Hi, I'm Foo
       """
       
-  Scenario: Using a command
+  Scenario: Using a having_launched callback
     Given a file named "fooshell.rb" with:
       """
       require 'bombshell'
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
-          def hello
-            puts 'hello world'
+          having_launched do
+            puts "Hi, I'm an instance of #{self.class}"
           end
         end
       end
       Bombshell.launch Foo::Shell
       """
     When I run "ruby fooshell.rb" interactively
-    And I type "hello"
     And I type "quit"
     Then the output should contain:
       """
-      [Bombshell]
+      Hi, I'm an instance of Foo::Shell
       """

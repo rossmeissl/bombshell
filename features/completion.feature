@@ -1,45 +1,53 @@
-Feature: Custom shell
+Feature: Completion
 
-  In order to allow my users to explore my library
-  As a Ruby library developer
-  I want to give them an interactive shell
+  In order to expedite my exploration
+  As a user of a Bombshell-enabled Ruby library
+  I want to be able to use tab completion
   
-  Scenario: Running the shell
+  Scenario: Single matching command
     Given a file named "fooshell.rb" with:
       """
       require 'bombshell'
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
+          def abcdef end
         end
       end
       Bombshell.launch Foo::Shell
       """
     When I run "ruby fooshell.rb" interactively
-    And I type "quit"
+    And I type "abc" and hit tab
     Then the output should contain:
       """
-      [Bombshell]
+      abcdef
+      """
+    And the output should not contain:
+      """
+      method_missing
       """
       
-  Scenario: Using a command
+  Scenario: Multiple matching commands
     Given a file named "fooshell.rb" with:
       """
       require 'bombshell'
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
-          def hello
-            puts 'hello world'
-          end
+          def abcd end
+          def abcx end
         end
       end
       Bombshell.launch Foo::Shell
       """
     When I run "ruby fooshell.rb" interactively
-    And I type "hello"
-    And I type "quit"
+    And I type "abc" and hit tab
     Then the output should contain:
       """
-      [Bombshell]
+      abcd
       """
+    And the output should contain:
+      """
+      abcx
+      """
+
