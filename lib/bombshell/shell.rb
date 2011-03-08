@@ -30,11 +30,11 @@ module Bombshell
     end
     
     module ClassMethods
-      def launch(arguments = [])
+      def launch(*arguments)
         @bombshell_callbacks[:before_launch].each do |callback|
           callback.call(*arguments.first(callback.arity))
         end
-        shell = new
+        shell = new(*arguments)
         @bombshell_callbacks[:having_launched].each do |callback|
           shell.instance_eval &callback
         end
