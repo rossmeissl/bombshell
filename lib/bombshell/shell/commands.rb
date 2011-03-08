@@ -4,7 +4,7 @@ module Bombshell
       HIDE = [:method_missing, :get_binding, :_prompt, :to_s]
       
       def quit
-        exit
+        throw :IRB_EXIT
       end
       def method_missing(*args)
         return if [:extend, :respond_to?].include? args.first
