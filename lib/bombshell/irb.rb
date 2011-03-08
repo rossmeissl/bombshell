@@ -12,14 +12,14 @@ module IRB
 
     workspace = WorkSpace.new(binding)
     
-    @CONF[:PROMPT][:CARBON] = {
+    @CONF[:PROMPT][:BOMBSHELL] = {
       :PROMPT_I => "%m> ",
       :PROMPT_S => "%m\"> ",
       :PROMPT_C => "%m…>",
       :PROMPT_N => "%m→>",
       :RETURN => ''
     }
-    @CONF[:PROMPT_MODE] = :CARBON
+    @CONF[:PROMPT_MODE] = :BOMBSHELL
 
     irb = Irb.new(workspace)
 
