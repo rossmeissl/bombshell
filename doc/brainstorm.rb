@@ -21,7 +21,9 @@ module Foo
       puts 'Welcome to FooShell'
     end
     
-    prompt_with '==='
+    prompt_with do
+      punctuation
+    end
     
     def do_something
       puts @msg
