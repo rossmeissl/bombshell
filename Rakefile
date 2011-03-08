@@ -18,15 +18,10 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Give your application or gem an interactive shell, complete with custom prompts, tab completion, and various callbacks. Commands are defined as Ruby methods and can be grouped into logical subshells.}
   gem.email = "andy@rossmeissl.net"
   gem.authors = ["Andy Rossmeissl"]
+  gem.add_development_dependency 'aruba', '~> 0.3.2'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "bombshell #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+require 'cucumber/rake/task'
+Cucumber::Rake::Task.new
+task :default => :cucumber
