@@ -9,6 +9,10 @@ module Foo
       @punctuation = '!'
     end
     
+    before_launch do |arg|
+      puts arg if arg
+    end
+    
     having_launched do
       @msg = 'Done' + self.class.punctuation
     end
@@ -23,11 +27,27 @@ module Foo
       puts @msg
     end
     
+    def sub
+      Subshell.launch
+    end
+    
     class << self
       def punctuation
         @punctuation
       end
     end
+  end
+end
+
+module Foo
+  class Subshell < Bombshell::Environment
+    include Bombshell::Shell
+    
+    def do_something_else
+      puts '... and done'
+    end
+    
+    prompt_with '[foo::subshell]'
   end
 end
 
