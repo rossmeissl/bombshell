@@ -11,7 +11,9 @@ module Bombshell
     end
     
     def self.filter(m)
-      m - Bombshell::Environment.instance_methods - Bombshell::Shell::Commands::HIDE
+      (m - Bombshell::Environment.instance_methods - Bombshell::Shell::Commands::HIDE).reject do |m|
+        m =~ /^_/
+      end
     end
   end
 end
