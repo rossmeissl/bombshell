@@ -11,7 +11,7 @@ Feature: Completion
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
-          def abcdef end
+          def abcdef; end
         end
       end
       Bombshell.launch Foo::Shell
@@ -34,8 +34,8 @@ Feature: Completion
       module Foo
         class Shell < Bombshell::Environment
           include Bombshell::Shell
-          def abcd end
-          def abcx end
+          def abcd; end
+          def abcx; end
         end
       end
       Bombshell.launch Foo::Shell
