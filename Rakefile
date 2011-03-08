@@ -11,18 +11,13 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "bombshell"
   gem.homepage = "http://github.com/rossmeissl/bombshell"
   gem.license = "MIT"
   gem.summary = %Q{Custom IRB consoles made easy}
-  gem.description = %Q{Custom IRB consoles made easy}
+  gem.description = %Q{Give your application or gem an interactive shell, complete with custom prompts, tab completion, and various callbacks. Commands are defined as Ruby methods and can be grouped into logical subshells.}
   gem.email = "andy@rossmeissl.net"
   gem.authors = ["Andy Rossmeissl"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
