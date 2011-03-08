@@ -8,69 +8,70 @@ Really, you did? Weird.
 
 `pizza/bin/pizza`:
 
-> #!/usr/bin/env ruby
-> $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
-
-> require 'rubygems'
-> require 'pizza'
-> Bombshell.launch(Pizza::Shell)
+    #!/usr/bin/env ruby
+    $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+    
+    require 'rubygems'
+    require 'pizza'
+    Bombshell.launch(Pizza::Shell)
 
 `pizza/lib/pizza/shell.rb`:
-> require 'bombshell'
-> 
-> module Pizza
->   class Shell < Bombshell::Environment
->     include Bombshell::Shell
->     
->     prompt_with 'pizzabot'
->     
->     def order(size)
->       Pizza::Order.new(:size => size).place!
->       puts 'Your pizza has been ordered! Super!'
->     end
->   end
-> end
+
+    require 'bombshell'
+    
+    module Pizza
+     class Shell < Bombshell::Environment
+       include Bombshell::Shell
+       
+       prompt_with 'pizzabot'
+       
+       def order(size)
+         Pizza::Order.new(:size => size).place!
+         puts 'Your pizza has been ordered! Super!'
+       end
+     end
+    end
 
 Let's try it out:
 
-> $ pizza
-> pizzabot> order 'large'
-> Your pizza has been ordered! Super!
-> pizzabot>
+    $ pizza
+    pizzabot> order 'large'
+    Your pizza has been ordered! Super!
+    pizzabot>
 
 ## Prompts
 
 You set your prompt like this:
 
-> prompt_with 'pizza_bot_loves_you'
+    prompt_with 'pizza_bot_loves_you'
 
 Or like this:
 
-> prompt_with do
->   "pizza_bot / #{Time.now}" # binding is on your shell *class*
-> end
+    prompt_with do
+     "pizza_bot / #{Time.now}" # binding is on your shell *class*
+    end
 
 Or even like this:
 
-> prompt_with do |shell|
->   "pizza_bot / #{shell.size}" # the block gets the shell *instance* when it asks for it
-> end
+    prompt_with do |shell|
+     "pizza_bot / #{shell.size}" # the block gets the shell *instance* when it asks for it
+    end
 
 ## Callbacks
 
 You can set callbacks like this:
 
-> before_launch do
->   init # binding is on your shell *class*
-> end
+    before_launch do
+     init # binding is on your shell *class*
+    end
 
-> before_launch do |size|
->   Pizza.default_size = size # the block gets as many command-line parameters as you ask for
-> end
+    before_launch do |size|
+     Pizza.default_size = size # the block gets as many command-line parameters as you ask for
+    end
 
-> having_launched do
->   puts size if size # binding is on your shell *instance*
-> end
+    having_launched do
+     puts size if size # binding is on your shell *instance*
+    end
 
 ## Subshells
 
@@ -78,58 +79,59 @@ If you dump all of your functionality into one shell, things could get a little 
 
 `pizza/lib/pizza/shell.rb`:
 
-> require 'bombshell'
-> 
-> module Pizza
->   class Shell < Bombshell::Environment
->     include Bombshell::Shell
->     prompt_with 'pizzabot'
->     
->     def pizza
->       Order.launch
->     end
->   end
-> end
+    require 'bombshell'
+    
+    module Pizza
+     class Shell < Bombshell::Environment
+       include Bombshell::Shell
+       prompt_with 'pizzabot'
+       
+       def pizza
+         Order.launch
+       end
+     end
+    end
 
 `pizza/lib/pizza/shell/order.rb`:
-> require 'bombshell'
-> 
-> module Pizza
->   class Shell
->     class Order < Bombshell::Environment
->       include Bombshell::Shell
->       prompt_with 'new order'
->     
->       def size(s)
->         @size = s
->         puts 'You got it!'
->       end
->       
->       def topping(t)
->         @toppings ||= []
->         @toppings << t
->         puts "Added #{t}"
->       end
->       
->       def order
->         Pizza::Order.new :size => @size, :toppings => @toppings
->         puts 'Coming right up!'
->         quit
->       end
->     end
->   end
-> end
+
+    require 'bombshell'
+    
+    module Pizza
+     class Shell
+       class Order < Bombshell::Environment
+         include Bombshell::Shell
+         prompt_with 'new order'
+       
+         def size(s)
+           @size = s
+           puts 'You got it!'
+         end
+         
+         def topping(t)
+           @toppings ||= []
+           @toppings << t
+           puts "Added #{t}"
+         end
+         
+         def order
+           Pizza::Order.new :size => @size, :toppings => @toppings
+           puts 'Coming right up!'
+           quit
+         end
+       end
+     end
+    end
 
 Let's try it out:
 
-> pizzabot> pizza
-> new order> size 'large'
-> You got it!
-> new order> topping 'pepperoni'
-> Added pepperoni
-> new order> order
-> Coming right up!
-> pizzabot>
+    pizzabot> pizza
+    new order> size 'large'
+    You got it!
+    new order> topping 'pepperoni'
+    Added pepperoni
+    new order> order
+    Coming right up!
+    pizzabot>
 
 ## Tab completion
 
