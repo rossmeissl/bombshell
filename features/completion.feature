@@ -18,6 +18,7 @@ Feature: Completion
       """
     When I run "ruby fooshell.rb" interactively
     And I type "abc" and hit tab
+    And I type "quit"
     Then the output should contain:
       """
       abcdef
@@ -41,7 +42,8 @@ Feature: Completion
       Bombshell.launch Foo::Shell
       """
     When I run "ruby fooshell.rb" interactively
-    And I type "abc" and hit tab
+    And I type "abc" and hit tab twice
+    And I type "quit"
     Then the output should contain:
       """
       abcd
