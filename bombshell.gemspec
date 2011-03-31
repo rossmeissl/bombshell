@@ -52,13 +52,19 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<bombshell>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<aruba>, ["~> 0.3.2"])
+      s.add_development_dependency(%q<aruba>, ["~> 0.3.2"])
     else
       s.add_dependency(%q<bombshell>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<aruba>, ["~> 0.3.2"])
+      s.add_dependency(%q<aruba>, ["~> 0.3.2"])
     end
   else
     s.add_dependency(%q<bombshell>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<aruba>, ["~> 0.3.2"])
+    s.add_dependency(%q<aruba>, ["~> 0.3.2"])
   end
 end
 
