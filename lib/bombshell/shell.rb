@@ -32,7 +32,7 @@ module Bombshell
     module ClassMethods
       def launch(*arguments)
         @bombshell_callbacks[:before_launch].each do |callback|
-          callback.call(*arguments.first(callback.arity))
+          callback.call(*arguments.first(callback.arity > -1 ? callback.arity : 0))
         end
         shell = new(*arguments)
         @bombshell_callbacks[:having_launched].each do |callback|
