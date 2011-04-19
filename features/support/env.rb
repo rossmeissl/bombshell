@@ -5,6 +5,6 @@ require 'rspec/expectations'
 require 'bombshell'
 
 Before do
-  @aruba_io_wait_seconds = 2
+  @aruba_io_wait_seconds = 3
   @dirs = [File.join(ENV['HOME'], 'bombshell_features')]
 end

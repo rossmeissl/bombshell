@@ -1,6 +1,9 @@
 # encoding: utf-8
 
+# We have to monkey patch a method into IRB here. I've tried extending it, and it doesn't work.
 module IRB
+  # Launch a custom IRB session with the given binding, set up the prompt, and define tab completion.
+  # @param [Binding] binding Your shell's binding
   def self.start_session(binding)
     unless @__initialized
       args = ARGV
