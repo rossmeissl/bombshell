@@ -8,29 +8,33 @@ Really, you did? Weird.
 
 `pizza/bin/pizza`:
 
-    #!/usr/bin/env ruby
-    $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
-    
-    require 'rubygems'
-    require 'pizza'
-    Bombshell.launch(Pizza::Shell)
+``` ruby
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+
+require 'rubygems'
+require 'pizza'
+Bombshell.launch(Pizza::Shell)
+``` ruby
 
 `pizza/lib/pizza/shell.rb`:
 
-    require 'bombshell'
-    
-    module Pizza
-     class Shell < Bombshell::Environment
-       include Bombshell::Shell
-       
-       prompt_with 'pizzabot'
-       
-       def order(size)
-         Pizza::Order.new(:size => size).place!
-         puts 'Your pizza has been ordered! Super!'
-       end
-     end
-    end
+``` ruby
+require 'bombshell'
+
+module Pizza
+ class Shell < Bombshell::Environment
+   include Bombshell::Shell
+   
+   prompt_with 'pizzabot'
+   
+   def order(size)
+     Pizza::Order.new(:size => size).place!
+     puts 'Your pizza has been ordered! Super!'
+   end
+ end
+end
+``` ruby
 
 Let's try it out:
 
@@ -43,24 +47,31 @@ Let's try it out:
 
 You set your prompt like this:
 
+``` ruby
     prompt_with 'pizza_bot_loves_you'
+```
 
 Or like this:
 
+``` ruby
     prompt_with do
      "pizza_bot / #{Time.now}" # binding is on your shell *class*
     end
+```
 
 Or even like this:
 
+``` ruby
     prompt_with do |shell|
      "pizza_bot / #{shell.size}" # the block gets the shell *instance* when it asks for it
     end
+```
 
 ## Callbacks
 
 You can set callbacks like this:
 
+``` ruby
     before_launch do
      init # binding is on your shell *class*
     end
@@ -72,6 +83,7 @@ You can set callbacks like this:
     having_launched do
      puts size if size # binding is on your shell *instance*
     end
+```
 
 ## Subshells
 
@@ -79,6 +91,7 @@ If you dump all of your functionality into one shell, things could get a little 
 
 `pizza/lib/pizza/shell.rb`:
 
+``` ruby
     require 'bombshell'
     
     module Pizza
@@ -91,9 +104,11 @@ If you dump all of your functionality into one shell, things could get a little 
        end
      end
     end
+```
 
 `pizza/lib/pizza/shell/order.rb`:
 
+``` ruby
     require 'bombshell'
     
     module Pizza
@@ -121,6 +136,7 @@ If you dump all of your functionality into one shell, things could get a little 
        end
      end
     end
+```
 
 Let's try it out:
 
