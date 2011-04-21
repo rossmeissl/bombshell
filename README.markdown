@@ -15,7 +15,7 @@ $:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(_
 require 'rubygems'
 require 'pizza'
 Bombshell.launch(Pizza::Shell)
-``` ruby
+```
 
 `pizza/lib/pizza/shell.rb`:
 
@@ -34,7 +34,7 @@ module Pizza
    end
  end
 end
-``` ruby
+```
 
 Let's try it out:
 
