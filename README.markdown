@@ -6,6 +6,8 @@ Really, you did? Weird.
 
 ## Simple example
 
+(The source code for this example is in [`doc/pizza`](https://github.com/rossmeissl/bombshell/tree/master/doc/pizza).) 
+
 `pizza/bin/pizza`:
 
 ``` ruby
@@ -42,6 +44,13 @@ Let's try it out:
     pizzabot> order 'large'
     Your pizza has been ordered! Super!
     pizzabot>
+
+If you have Bombshell's source checked out, you can try this at home:
+
+``` console
+$ cd doc/pizza
+$ ./bin/pizza
+```
 
 ## Prompts
 
@@ -87,55 +96,57 @@ You can set callbacks like this:
 
 ## Subshells
 
-If you dump all of your functionality into one shell, things could get a little messy. That's why we have *subshells*:
+If you dump all of your functionality into one shell, things could get a little messy. That's why we have *subshells*.
+
+(The source code for this example is in [`doc/pizza2`](https://github.com/rossmeissl/bombshell/tree/master/doc/pizza2).) 
 
 `pizza/lib/pizza/shell.rb`:
 
 ``` ruby
-    require 'bombshell'
-    
-    module Pizza
-     class Shell < Bombshell::Environment
-       include Bombshell::Shell
-       prompt_with 'pizzabot'
-       
-       def pizza
-         Order.launch
-       end
-     end
-    end
+require 'bombshell'
+
+module Pizza
+ class Shell < Bombshell::Environment
+   include Bombshell::Shell
+   prompt_with 'pizzabot'
+   
+   def pizza
+     Order.launch
+   end
+ end
+end
+
+require 'pizza/shell/order'
 ```
 
 `pizza/lib/pizza/shell/order.rb`:
 
 ``` ruby
-    require 'bombshell'
-    
-    module Pizza
-     class Shell
-       class Order < Bombshell::Environment
-         include Bombshell::Shell
-         prompt_with 'new order'
-       
-         def size(s)
-           @size = s
-           puts 'You got it!'
-         end
-         
-         def topping(t)
-           @toppings ||= []
-           @toppings << t
-           puts "Added #{t}"
-         end
-         
-         def order
-           Pizza::Order.new :size => @size, :toppings => @toppings
-           puts 'Coming right up!'
-           quit
-         end
-       end
+module Pizza
+ class Shell
+   class Order < Bombshell::Environment
+     include Bombshell::Shell
+     prompt_with 'new order'
+   
+     def size(s)
+       @size = s
+       puts 'You got it!'
      end
-    end
+     
+     def topping(t)
+       @toppings ||= []
+       @toppings << t
+       puts "Added #{t}"
+     end
+     
+     def order
+       Pizza::Order.new :size => @size, :toppings => @toppings
+       puts 'Coming right up!'
+       quit
+     end
+   end
+ end
+end
 ```
 
 Let's try it out:
@@ -148,6 +159,13 @@ Let's try it out:
     new order> order
     Coming right up!
     pizzabot>
+
+If you have Bombshell's source checked out, you can try this at home:
+
+``` console
+$ cd doc/pizza2
+$ ./bin/pizza
+```
 
 ## Tab completion
 
