@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Rossmeissl"]
-  s.date = "2011-04-20"
+  s.date = "2011-12-08"
   s.description = %q{Give your application or gem an interactive shell, complete with custom prompts, tab completion, and various callbacks. Commands are defined as Ruby methods and can be grouped into logical subshells.}
   s.email = %q{andy@rossmeissl.net}
   s.extra_rdoc_files = [
