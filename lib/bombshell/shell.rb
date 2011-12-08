@@ -55,7 +55,8 @@ module Bombshell
         @bombshell_callbacks[:before_launch].each do |callback|
           callback.call(*arguments.first(callback.arity > -1 ? callback.arity : 0))
         end
-        shell = new(*arguments)
+        number_of_requested_arguments = instance_method(:initialize).arity < 0 ? arguments.length : instance_method(:initialize).arity
+        shell = new(*arguments.first(number_of_requested_arguments))
         @bombshell_callbacks[:having_launched].each do |callback|
           shell.instance_eval &callback
         end
