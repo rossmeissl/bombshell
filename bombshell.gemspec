@@ -16,26 +16,12 @@ Gem::Specification.new do |s|
     "README.markdown"
   ]
   s.files = [
-    ".document",
-    ".rspec",
-    "Gemfile",
-    "LICENSE.txt",
-    "README.markdown",
-    "Rakefile",
-    "VERSION",
     "bombshell.gemspec",
-    "doc/brainstorm.rb",
-    "features/callbacks.feature",
-    "features/completion.feature",
-    "features/prompts.feature",
-    "features/shell.feature",
-    "features/step_definitions/completion_steps.rb",
-    "features/subshells.feature",
-    "features/support/env.rb",
     "lib/bombshell.rb",
     "lib/bombshell/completor.rb",
     "lib/bombshell/environment.rb",
     "lib/bombshell/irb.rb",
+    "lib/bombshell/version.rb",
     "lib/bombshell/shell.rb",
     "lib/bombshell/shell/commands.rb"
   ]
