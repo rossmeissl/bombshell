@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
   s.summary = %q{Custom IRB consoles made easy}
-  s.add_development_dependency 'aruba'
+  s.add_development_dependency 'aruba', '>= 0.3.4'
   s.add_development_dependency 'bueller'
 end
 

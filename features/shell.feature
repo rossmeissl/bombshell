@@ -15,7 +15,7 @@ Feature: Custom shell
       end
       Bombshell.launch Foo::Shell
       """
-    When I run "ruby fooshell.rb" interactively
+    When I run `ruby fooshell.rb` interactively
     And I type "quit"
     Then the output should contain:
       """
@@ -36,7 +36,7 @@ Feature: Custom shell
       end
       Bombshell.launch Foo::Shell
       """
-    When I run "ruby fooshell.rb" interactively
+    When I run `ruby fooshell.rb` interactively
     And I type "hello"
     And I type "quit"
     Then the output should contain:

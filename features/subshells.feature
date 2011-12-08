@@ -24,7 +24,7 @@ Feature: Subshells
       end
       Bombshell.launch Foo::Shell
       """
-    When I run "ruby fooshell.rb" interactively
+    When I run `ruby fooshell.rb` interactively
     And I type "deeper"
     And I type "foo"
     And I type "quit"

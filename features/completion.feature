@@ -16,7 +16,7 @@ Feature: Completion
       end
       Bombshell.launch Foo::Shell
       """
-    When I run "ruby fooshell.rb" interactively
+    When I run `ruby fooshell.rb` interactively
     And I type "abc" and hit tab
     And I type "quit"
     Then the output should contain:
@@ -41,7 +41,7 @@ Feature: Completion
       end
       Bombshell.launch Foo::Shell
       """
-    When I run "ruby fooshell.rb" interactively
+    When I run `ruby fooshell.rb` interactively
     And I type "abc" and hit tab twice
     And I type "quit"
     Then the output should contain:
